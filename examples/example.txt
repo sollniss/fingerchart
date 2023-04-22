@@ -1,0 +1,11 @@
+eses1 xxx xxx O
+es1 xxx xxx X
+e1 xxo xxo O
+eis1 xxx xxo X
+eisis1 oxo xxo X
+
+feses1 xxo xxx O
+fes1 xox ooo O
+f1 xxx ooo O
+fis1 xxx xxo X
+fisis1 ooo ooo X
