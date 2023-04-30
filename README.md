@@ -10,7 +10,7 @@ Input:
 ```
 #background-color=#FFCDBC
 #color=#130303
-#node-color=#2D080A
+#note-color=#2D080A
 #hole-color=#7C3626
 #scale=1.3
 eses1 xxx xxx O
@@ -55,7 +55,7 @@ Config values are all optional and start with a `#`. The following default value
 ```
 #background-color=transparent
 #color=black
-#node-color=black
+#note-color=black
 #hole-color=black
 #scale=1
 ```

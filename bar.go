@@ -7,7 +7,7 @@ import (
 )
 
 type Bar struct {
-	// Horizontal space between nodes.
+	// Horizontal space between notes.
 	HorizontalNoteSpace float64
 
 	// Vertical space between notes (half of the line space).

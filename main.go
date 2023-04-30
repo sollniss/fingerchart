@@ -17,7 +17,7 @@ type Finger struct {
 type SVGConfig struct {
 	BackgroundColor string
 	Color           string
-	NodeColor       string
+	NoteColor       string
 	HoleColor       string
 
 	Scale float64
@@ -40,8 +40,8 @@ func (c *SVGConfig) Update(s string) error {
 		c.BackgroundColor = val
 	case "color":
 		c.Color = val
-	case "node-color":
-		c.NodeColor = val
+	case "note-color":
+		c.NoteColor = val
 	case "hole-color":
 		c.HoleColor = val
 	case "scale":

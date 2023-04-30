@@ -1,6 +1,6 @@
 #background-color=#FFCDBC
 #color=#130303
-#node-color=#2D080A
+#note-color=#2D080A
 #hole-color=#7C3626
 #scale=1.3
 eses1 xxx xxx O

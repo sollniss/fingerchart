@@ -19,8 +19,8 @@ func (c FingeringChart) Print(config SVGConfig) string {
 
 	// get colors from config, if we have any
 	var noteColor string
-	if config.NodeColor != "" {
-		noteColor = ` color="` + config.NodeColor + `"`
+	if config.NoteColor != "" {
+		noteColor = ` color="` + config.NoteColor + `"`
 	}
 
 	var holeColor string
