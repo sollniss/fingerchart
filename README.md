@@ -24,6 +24,8 @@ Output:
 
 ![SVG output](https://raw.githubusercontent.com/sollniss/fingerchart/main/examples/example.svg)
 
+(Note that for readability purposes, this SVG has a white background. SVGs produced by the tool are transparent by default.)
+
 # Usage
 
 All note names are in German. The number behind the note's name specifies it's height. Negative numbers are valid.
