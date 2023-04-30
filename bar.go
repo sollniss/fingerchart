@@ -124,7 +124,7 @@ func (b Bar) Print() (float64, float64, string) {
 	barHeight := strconv.FormatFloat(b.VerticalNoteSpace*8, 'f', -1, 64)
 
 	return barlength, math.Abs(maxNoteY - minNoteY), fmt.Sprintf(`<g transform="translate(0, %[1]s)">
-		<path stroke="black" stroke-linecap="square"
+		<path stroke="currentColor" stroke-linecap="square"
 			d="M 0,0 V %[6]s
 			M %[2]s,0 V %[6]s
 			M 0,0 H %[2]s

@@ -1,11 +1,16 @@
+#background-color=#FFCDBC
+#color=#130303
+#node-color=#2D080A
+#hole-color=#7C3626
+#scale=1.3
 eses1 xxx xxx O
 es1 xxx xxx X
-e1 xxo xxo O
-eis1 xxx xxo X
-eisis1 oxo xxo X
+e1 xxx xxo X
+eis1 xxx xoo X,xxx oox O
+eisis1 xxx oox X
 
-feses1 xxo xxx O
-fes1 xox ooo O
-f1 xxx ooo O
-fis1 xxx xxo X
-fisis1 ooo ooo X
+feses-1 ooo ooo X
+fes0 ooo oox X
+f1 ooo oxx X
+fis2 ooo xxx X
+fisis3 oox xxx X

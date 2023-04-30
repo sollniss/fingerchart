@@ -37,6 +37,8 @@ type BaseNote struct {
 
 	// X-position of the d note.
 	BaseY float64
+
+	colored
 }
 
 type Note struct {
@@ -89,7 +91,7 @@ func (n Note) Print(verticalNoteSpace float64) string {
 	// lower means y is greater
 	for y > offset || floatEquals(y, offset) {
 		lineY := strconv.FormatFloat(offset, 'f', -1, 64)
-		lines += fmt.Sprintf(`<path stroke="black" d="M %s,%s h 14"/>`, lineX, lineY) // TODO: automatic length
+		lines += fmt.Sprintf(`<path stroke="currentColor" d="M %s,%s h 14"/>`, lineX, lineY) // TODO: automatic length
 
 		// move up
 		offset += verticalNoteSpace * 2
@@ -101,7 +103,7 @@ func (n Note) Print(verticalNoteSpace float64) string {
 		// higher means y is smaller
 		for y < offset || floatEquals(y, offset) {
 			lineY := strconv.FormatFloat(offset, 'f', -1, 64)
-			lines += fmt.Sprintf(`<path stroke="black" d="M %s,%s h 14"/>`, lineX, lineY) // TODO: automatic length
+			lines += fmt.Sprintf(`<path stroke="currentColor" d="M %s,%s h 14"/>`, lineX, lineY) // TODO: automatic length
 
 			// move down
 			offset -= verticalNoteSpace * 2
@@ -110,12 +112,12 @@ func (n Note) Print(verticalNoteSpace float64) string {
 
 	var modifier string
 	if n.Modifier != nil {
-		modifier = fmt.Sprintf(`<use href="#%s"/>`, n.Modifier.ID)
+		modifier = fmt.Sprintf(`<use href="#%s" color="%s"/>`, n.Modifier.ID, n.Color)
 		//x += n.Modifier.PaddingLeft
 	}
 
 	strX := strconv.FormatFloat(n.getX(), 'f', -1, 64)
 	strY := strconv.FormatFloat(y, 'f', -1, 64)
 
-	return fmt.Sprintf(`%s<g transform="translate(%s, %s)">%s<use href="#%s"/></g>`, lines, strX, strY, modifier, n.ID)
+	return fmt.Sprintf(`%s<g transform="translate(%s, %s)">%s<use href="#%s" color="%s"/></g>`, lines, strX, strY, modifier, n.ID, n.Color)
 }

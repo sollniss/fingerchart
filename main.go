@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"errors"
 	"os"
 	"strconv"
 	"strings"
@@ -11,6 +12,45 @@ import (
 type Finger struct {
 	ID         string
 	PaddingTop float64
+}
+
+type SVGConfig struct {
+	BackgroundColor string
+	Color           string
+	NodeColor       string
+	HoleColor       string
+
+	Scale float64
+}
+
+type colored struct {
+	Color string
+}
+
+func (c *SVGConfig) Update(s string) error {
+	split := strings.SplitN(s, "=", 2)
+	if len(split) < 2 {
+		return errors.New("invalid format: " + s)
+	}
+
+	key := strings.TrimLeft(split[0], "#")
+	val := split[1]
+	switch key {
+	case "background-color":
+		c.BackgroundColor = val
+	case "color":
+		c.Color = val
+	case "node-color":
+		c.NodeColor = val
+	case "hole-color":
+		c.HoleColor = val
+	case "scale":
+		c.Scale, _ = strconv.ParseFloat(val, 64)
+	default:
+		return errors.New("unknown key: " + key)
+	}
+
+	return nil
 }
 
 func main() {
@@ -37,12 +77,14 @@ func main() {
 	logger.WriteString("\r\nopening " + inputFile)
 	readFile, err := os.Open(inputFile)
 	if err != nil {
-		logger.WriteString("\r\n" + err.Error())
+		logger.WriteString("\r\nerror opening file: " + err.Error())
 		return
 	}
 	defer readFile.Close()
 
 	fileScanner := bufio.NewScanner(readFile)
+	config := SVGConfig{}
+
 	for fileScanner.Scan() {
 		line := strings.TrimSpace(fileScanner.Text())
 
@@ -52,6 +94,15 @@ func main() {
 			bar = Bar{
 				HorizontalNoteSpace: 30,
 				VerticalNoteSpace:   3,
+			}
+			continue
+		}
+
+		// config values start with a '#'
+		if line[0] == '#' {
+			err := config.Update(line)
+			if err != nil {
+				logger.WriteString("\r\nerror parsing config: " + err.Error())
 			}
 			continue
 		}
@@ -76,7 +127,7 @@ func main() {
 		return
 	}
 
-	_, err = f.WriteString(chart.Print())
+	_, err = f.WriteString(chart.Print(config))
 	if err != nil {
 		logger.WriteString("\r\nerror writing chart: " + err.Error())
 		return
