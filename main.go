@@ -18,12 +18,12 @@ func main() {
 	defer logger.Sync()
 	defer logger.Close()
 
-	inputFile := "asd.txt"
-	outputFile := "asd.svg"
-
+	var inputFile, outputFile string
 	if len(os.Args) > 1 {
 		inputFile = os.Args[1]
 		outputFile = inputFile[:strings.LastIndex(inputFile, ".")] + ".svg"
+	} else {
+		return
 	}
 
 	chart := FingeringChart{
@@ -72,25 +72,25 @@ func main() {
 	logger.WriteString("\r\nwriting " + outputFile)
 	f, err := os.Create(outputFile)
 	if err != nil {
-		logger.WriteString("\r\n" + err.Error())
+		logger.WriteString("\r\nerror creating output file: " + err.Error())
 		return
 	}
 
 	_, err = f.WriteString(chart.Print())
 	if err != nil {
-		logger.WriteString("\r\n" + err.Error())
+		logger.WriteString("\r\nerror writing chart: " + err.Error())
 		return
 	}
 
 	err = f.Sync()
 	if err != nil {
-		logger.WriteString("\r\n" + err.Error())
+		logger.WriteString("\r\nerror flushing file: " + err.Error())
 		return
 	}
 
 	err = f.Close()
 	if err != nil {
-		logger.WriteString("\r\n" + err.Error())
+		logger.WriteString("\r\nerror closing file: " + err.Error())
 		return
 	}
 }
