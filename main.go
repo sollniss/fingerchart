@@ -28,13 +28,12 @@ type colored struct {
 }
 
 func (c *SVGConfig) Update(s string) error {
-	split := strings.SplitN(s, "=", 2)
-	if len(split) < 2 {
+	key, val, found := strings.Cut(s, "=")
+	if !found {
 		return errors.New("invalid format: " + s)
 	}
+	key = strings.TrimLeft(key, "#")
 
-	key := strings.TrimLeft(split[0], "#")
-	val := split[1]
 	switch key {
 	case "background-color":
 		c.BackgroundColor = val
@@ -108,10 +107,7 @@ func main() {
 		}
 
 		// cis1 oxx ooo x,oxx oxx o
-		split := strings.SplitN(line, " ", 2)
-		noteStr := split[0]
-		fingeringStr := split[1]
-
+		noteStr, fingeringStr, _ := strings.Cut(line, " ")
 		note := parseNote(noteStr)
 		note.Fingering = parseFingering(fingeringStr)
 
