@@ -3,7 +3,7 @@ A tool to generate fingering charts.
 
 This tool is mainly for not-so computer literate people, so no command line features.
 You are expected to drop a text file onto the executable which then generates an SVG in the same directory as the text file. 
-A log file is also generated in the same directory as the executable, to allow some degree of debugging.
+A log file is also generated in the same directory as the executable, to allow for some degree of debugging.
 
 # Example
 Input:
@@ -32,7 +32,7 @@ Output:
 
 # Usage
 
-All note names are in German. The number behind the note's name specifies it's height. Negative numbers are valid.
+All note names are in German. The number behind the note's name specifies its height. Negative numbers are valid.
 Here is a list of all supported note names:
 ```
 c, cis, cisis, ces, ceses,
@@ -44,9 +44,9 @@ a, ais, aisis, as, ases,
 h, his, hisis, b, heses
 ```
 
-`x` and `o` represend a pressed and unpressed hole. `X` and `O` represent pressed and unpressed keys.
+`x` and `o` represent a pressed and unpressed hole. `X` and `O` represent pressed and unpressed keys.
 
-Each line represents one note and it's fingering(s). A space in the fingering list creates a small gap in the SVG. You can add multiple fingerings to a note by separating them with a `,`.
+Each line represents one note and its fingering(s). A space in the fingering list creates a small gap in the SVG. You can add multiple fingerings to a note by separating them with a `,`.
 An empty line creates a new bar.
 
 ## Config
